@@ -1,0 +1,147 @@
+<!doctype html>
+
+<!--Assign our angular module -->
+<html ng-app="angularModule">
+    <head>
+
+        <!-- Latest compiled and minified CSS -->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+        <link rel="stylesheet" href="bootstrap/bootstrap/css/bootstrap.min.css">
+        <script src="angular.min.js"></script>
+        <script src="core.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+        <script src="jquery-3.3.1.js"></script>
+    </head>
+    <body ng-controller="mainController" data-ng-init="init()">
+
+       <!-- input and table  to get data -->
+       
+       <table class="table table-bordered">
+            <thead>
+                <th>Product</th>
+                <th>Image</th>
+            </thead>
+            <tbody ng-repeat="i in products">
+                
+                <tr >
+                        <td >
+                            {{i.prosub.proname}}
+                        </td> 
+                        <td >
+                                <img src ={{path}}{{i.prosub.image}} style="width:40px;height:40px">
+                        </td>
+                        
+                    
+                </tr>
+                
+            </tbody>
+       </table> 
+       
+       
+
+       <!-- form to select category-->
+       <form>
+        <div class="form-group" >
+            
+            <div class="row">
+                <div class="col-md-3">
+                        <label for="sel1">Select Categories:</label>
+                        <select class="form-control" ng-click="getProducts()" id="categories">
+                                <option value=0></option>
+                                <option value={{i._id}} ng-repeat="i in categories">{{i.name}}</option>
+                        </select>
+                </div>
+                <div class="col-md-3" >
+                        <label for="sel1">Select subcategories:</label>
+                        <select class="form-control" ng-click="getProducts()" id="subcategories">
+                                <option value=0></option>
+                                <option value={{i._id}} ng-repeat="i in subcategories">{{i.name}}</option>
+                        </select>
+                </div>
+                <div class="col-md-3">
+                    <label>Enter product name</label>
+                    <input type="text"class="form-control field span12" id="proname" rows="4" ng-model="keywords" ng-change="getProducts()" />
+                </div>
+
+            </div>
+           
+
+          </div>
+       </form>
+
+       <div class="row">
+           <div class="col-md-12">
+               <form class="form-horizontal" ng-submit="submit()">
+                    <div class="col-md-4">
+                            <label for="sel1">Select Categories:</label>
+                            <select class="form-control"  id="category" ng-click='getsubcategory()'>
+                                    <option value=0></option>
+                                    <option value={{i._id}} ng-repeat="i in categories">{{i.name}}</option>
+                            </select>
+                    </div>
+                    <div class="col-md-4">
+                            <label for="sel1">Select subcategories:</label>
+                            <select class="form-control"  id="subcategory">
+                                    <option value=0></option>
+                                    <option value={{i._id}} ng-repeat="i in subcategory">{{i.name}}</option>
+                            </select>
+                    </div>
+    
+                    <div class="col-md-4">
+                            <label for="sel1">Select unit:</label>
+                            <select class="form-control"  id="unit">
+                                    <option value=0></option>
+                                    <option value={{i._id}} ng-repeat="i in units">{{i.name}}</option>
+                            </select>
+                    </div>
+    
+                    <div class="col-md-4">
+                            <label for="sel1">Select size:</label>
+                            <select class="form-control"  id="size">
+                                    <option value=0></option>
+                                    <option value={{i._id}} ng-repeat="i in size">{{i.name}}</option>
+                            </select>
+                    </div>
+                    <div class="col-md-4">
+                            <label for='Name'>Name</label>
+                            <input class="form-control" type="text" ng-model="product.name" placeholder="Enter product name:">
+                    </div>
+                    <div class="col-md-4">
+                            <label for='price'>Price</label>
+                            <input class="form-control" type="text" ng-model="product.price" placeholder="Enter product price:">
+                    </div>
+                    <div class="col-md-4">
+                            <label for="">Image</label>
+                            <input class="form-control" type="file" id="file" multiple onchange = "angular.element(this).scope().GetFile(this)" >
+                    </div>
+                    <div class="col-md-3">
+                            <button style="width:100%;margin-top:20px" class="btn btn-primary">post</button>
+                    </div>
+                    
+               </form>
+            
+           </div>
+
+       </div>
+      
+
+       <!-- Form to register 
+     <form  ng-submit="submit()" >
+         <div>
+             <label for='Name'></label>
+             <input type="text" ng-model="product.title" placeholder="Enter product name:">
+         </div>
+         <div>
+            <label for='Name'></label>
+            <input type="text" ng-model="product.title" placeholder="Enter product name:">
+        </div>
+         <div>
+             <label for="">Image</label>
+             <input type="file" id="file" multiple onchange = "angular.element(this).scope().GetFile(this)" >
+             <button>post</button>
+         </div>
+       
+     </form>-->
+
+
+    </body>
